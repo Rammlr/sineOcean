@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hhqrpo0f3j8b"
-path="res://.godot/imported/Sine Ocean.icon.png-7c16deb7cb037d5ed3214ffd85804c53.ctex"
+uid="uid://pjr4kr0o0yu"
+path="res://.godot/imported/index.icon.png-8466b9836b3b13bcc45e53125321ef39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://exports/web/Sine Ocean.icon.png"
-dest_files=["res://.godot/imported/Sine Ocean.icon.png-7c16deb7cb037d5ed3214ffd85804c53.ctex"]
+source_file="res://exports/web/index.icon.png"
+dest_files=["res://.godot/imported/index.icon.png-8466b9836b3b13bcc45e53125321ef39.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2y22ah0jumhc"
-path="res://.godot/imported/Sine Ocean.png-ba0a72345e5edef913f0d16d005d00c0.ctex"
+uid="uid://dgr7hqb13mx0i"
+path="res://.godot/imported/index.apple-touch-icon.png-bec44240503e0edb75d852ab0cc26d58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://exports/web/Sine Ocean.png"
-dest_files=["res://.godot/imported/Sine Ocean.png-ba0a72345e5edef913f0d16d005d00c0.ctex"]
+source_file="res://exports/web/index.apple-touch-icon.png"
+dest_files=["res://.godot/imported/index.apple-touch-icon.png-bec44240503e0edb75d852ab0cc26d58.ctex"]
 
 [params]
 
