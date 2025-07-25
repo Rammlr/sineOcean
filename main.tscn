@@ -1,31 +1,32 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5byht40vdiyi"]
+[gd_scene load_steps=13 format=3 uid="uid://b5byht40vdiyi"]
 
+[ext_resource type="Texture2D" uid="uid://b1uhm26mf7kb4" path="res://sky-4k.jpg" id="1_h2yge"]
 [ext_resource type="Shader" uid="uid://dd2fomdwg3j1r" path="res://shaders/handmade_sine_water.gdshader" id="1_ig7tw"]
 [ext_resource type="Shader" uid="uid://whgiibewes4l" path="res://shaders/show_normals.gdshader" id="2_0xm2m"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
-sky_top_color = Color(0.352107, 0.611909, 0.995302, 1)
-sky_horizon_color = Color(0.903671, 0.630218, 0.507713, 1)
-ground_bottom_color = Color(0.12549, 0.12549, 0.12549, 1)
-ground_horizon_color = Color(0.457148, 0.467192, 0.483048, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1bvp3"]
+panorama = ExtResource("1_h2yge")
 
 [sub_resource type="Sky" id="Sky_0xm2m"]
-sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+sky_material = SubResource("PanoramaSkyMaterial_1bvp3")
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
 sky = SubResource("Sky_0xm2m")
-tonemap_mode = 2
+tonemap_mode = 3
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(1, 0.685, 0.37, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 render_priority = 0
 shader = ExtResource("1_ig7tw")
 shader_parameter/amplitude = 0.2
-shader_parameter/frequency = 1.63
+shader_parameter/frequency = 1.14
 shader_parameter/speed = 1.755
 shader_parameter/amplitude_multiplier = 0.7
-shader_parameter/frequency_multiplier = 1.15
+shader_parameter/frequency_multiplier = 1.085
 shader_parameter/wave_count = 32
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h2yge"]
@@ -41,26 +42,42 @@ shader = ExtResource("2_0xm2m")
 [sub_resource type="TorusMesh" id="TorusMesh_1bvp3"]
 material = SubResource("ShaderMaterial_h2yge")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0, 0.302699, 0.55204, 1)
+metallic_specular = 0.26
+roughness = 0.05
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
+material = SubResource("StandardMaterial3D_h2yge")
+size = Vector2(10000, 10000)
+center_offset = Vector3(0, -1, 0)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.420682, 0.859594, -0.290044, -0.86256, 0.478048, 0.165713, 0.281101, 0.180468, 0.942557, 0, 1.78414, -0.452582)
+transform = Transform3D(0.420682, 0.859593, -0.290044, -0.802393, 0.501729, 0.323161, 0.423311, 0.0967814, 0.9008, 0, 4.1191, -0.452582)
+light_color = Color(0.999999, 0.93784, 0.802185, 1)
 shadow_enabled = true
 shadow_transmittance_bias = 16.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.977046, -0.0442915, 0.208375, 0, 0.978148, 0.207912, -0.21303, 0.203139, -0.955695, 0.715, 1, -4.238)
+transform = Transform3D(-0.60021, 0.166296, -0.782364, 4.90243e-09, 0.978148, 0.207911, 0.799842, 0.12479, -0.587094, -7.26426, 1, -4.53661)
 
 [node name="Water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_h2yge")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55957, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.738281, -3.67212, -5.58496)
+intensity = 0.55
+size = Vector3(46.0625, 32.4634, 54.832)
 
 [node name="NormalTester" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.615, 0, 0, 0, 2.615, 0, 0, 0, 2.615, 0, 2.1318, 0)
 visible = false
 mesh = SubResource("TorusMesh_1bvp3")
+
+[node name="WaterBase" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1bvp3")

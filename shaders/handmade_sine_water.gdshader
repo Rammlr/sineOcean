@@ -1,4 +1,6 @@
 shader_type spatial;
+//render_mode wireframe;
+
 
 uniform float amplitude = .5;
 uniform float frequency = 1.;
@@ -61,8 +63,11 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = vec3(90,188,216) / 255.;
-	//ALBEDO = NORMAL;
+	//ALBEDO = vec3(90,188,216) / 255.;
+	ALBEDO = vec3(0.0, 0.18, 0.3);
+	ROUGHNESS = .05;
+	METALLIC = 0.0;
+	SPECULAR = .255;
 }
 
 //void light() {
