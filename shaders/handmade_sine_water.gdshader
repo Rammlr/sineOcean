@@ -65,6 +65,7 @@ void vertex() {
 void fragment() {
 	//ALBEDO = vec3(90,188,216) / 255.;
 	ALBEDO = vec3(0.0, 0.18, 0.3);
+	ALBEDO = vec3(7., 55., 176.) / 350.;
 	ROUGHNESS = .05;
 	METALLIC = 0.0;
 	SPECULAR = .255;
