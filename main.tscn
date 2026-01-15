@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b5byht40vdiyi"]
 
 [ext_resource type="Texture2D" uid="uid://b1uhm26mf7kb4" path="res://sky-4k.jpg" id="1_h2yge"]
-[ext_resource type="Shader" uid="uid://dd2fomdwg3j1r" path="res://shaders/handmade_sine_water.gdshader" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://dd2fomdwg3j1r" path="res://shaders/fbm_sine_water.gdshader" id="1_ig7tw"]
 [ext_resource type="Shader" uid="uid://whgiibewes4l" path="res://shaders/show_normals.gdshader" id="2_0xm2m"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1bvp3"]
