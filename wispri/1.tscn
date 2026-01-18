@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5byht40vdiyi"]
+
+[ext_resource type="Texture2D" uid="uid://b1uhm26mf7kb4" path="res://sky-4k.jpg" id="1_ada5j"]
+[ext_resource type="Shader" uid="uid://b2a0us0wtfv78" path="res://wispri/shaders/1.gdshader" id="2_i14s0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
+render_priority = 0
+shader = ExtResource("2_i14s0")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h2yge"]
+material = SubResource("ShaderMaterial_0xm2m")
+size = Vector2(30, 30)
+subdivide_width = 200
+subdivide_depth = 200
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1bvp3"]
+panorama = ExtResource("1_ada5j")
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("PanoramaSkyMaterial_1bvp3")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+tonemap_mode = 3
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(1, 0.685, 0.37, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0, 0.302699, 0.55204, 1)
+metallic_specular = 0.26
+roughness = 0.05
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
+material = SubResource("StandardMaterial3D_h2yge")
+size = Vector2(10000, 10000)
+center_offset = Vector3(0, -1, 0)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Water" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_h2yge")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.420682, 0.8595935, -0.29004428, -0.802393, 0.5017294, 0.32316113, 0.423311, 0.09678144, 0.9008003, 0, 4.1191, -0.452582)
+light_color = Color(0.999999, 0.93784, 0.802185, 1)
+shadow_enabled = true
+shadow_transmittance_bias = 16.0
+
+[node name="Camera3D" type="Camera3D" parent="Environment"]
+transform = Transform3D(-0.60021025, 0.16629584, -0.78236395, 4.902432e-09, 0.97814786, 0.20791078, 0.7998423, 0.12479018, -0.58709437, -7.26426, 1, -4.53661)
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.738281, -3.67212, -5.58496)
+intensity = 0.55
+size = Vector3(46.0625, 32.4634, 54.832)
+
+[node name="WaterBase" type="MeshInstance3D" parent="Environment"]
+mesh = SubResource("PlaneMesh_1bvp3")
+skeleton = NodePath("../..")
