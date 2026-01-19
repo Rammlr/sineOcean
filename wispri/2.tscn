@@ -48,6 +48,7 @@ center_offset = Vector3(0, -1, 0)
 [node name="Node3D" type="Node3D"]
 
 [node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.551333, 0)
 mesh = SubResource("PlaneMesh_h2yge")
 
 [node name="Environment" type="Node" parent="."]
