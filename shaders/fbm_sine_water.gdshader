@@ -43,17 +43,17 @@ vec3 sine_fbm_normal(vec3 position) {
 	float current_amplitude = amplitude;
 	float current_frequency  = frequency;
 
-  for (int i = 0; i < wave_count; i++){
-	vec2 random_direction = get_random_wave_direction(i);
-    result.x -= current_amplitude * random_direction.x * current_frequency
-		* cos(dot(random_direction, position.xz) * current_frequency + TIME * speed);
-	result.z -= current_amplitude * random_direction.y * current_frequency
-		* cos(dot(random_direction, position.xz) * current_frequency + TIME * speed);
-    current_amplitude *= amplitude_multiplier;
-    current_frequency *= frequency_multiplier;
-  }
+	for (int i = 0; i < wave_count; i++){
+		vec2 random_direction = get_random_wave_direction(i);
+		result.x -= current_amplitude * random_direction.x * current_frequency
+			* cos(dot(random_direction, position.xz) * current_frequency + TIME * speed);
+		result.z -= current_amplitude * random_direction.y * current_frequency
+			* cos(dot(random_direction, position.xz) * current_frequency + TIME * speed);
+		current_amplitude *= amplitude_multiplier;
+		current_frequency *= frequency_multiplier;
+	}
 
-  return normalize(result);
+	return normalize(result);
 }
 
 void vertex() {
@@ -70,4 +70,3 @@ void fragment() {
 	METALLIC = 0.0;
 	SPECULAR = .255;
 }
-
